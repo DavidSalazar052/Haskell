@@ -14,7 +14,6 @@ Exposición sobre el lenguaje **Haskell**, curso de Paradigmas de Programación.
 - Guía de instalación de Haskell (Windows)
 - Guía de instalación de la extensión de Haskell para VSCode
 - Ejemplos de código usados en la exposición
-- Capturas de pantalla de apoyo (ver carpeta [`/imagenes`](./imagenes))
 
 ---
 
@@ -42,7 +41,7 @@ GHCup es el instalador oficial recomendado para obtener GHC (el compilador de Ha
 
 7. Si ves un número de versión, Haskell ya está instalado en tu equipo.
 
-![Verificación de instalación con ghci --version](imagenes/instalacion-exitosa.png)
+![Verificación de instalación con ghci --version](imagenes/ghcu_version.png)
 
 ### ¿Los pasos no funcionaron?
 
@@ -64,22 +63,10 @@ Para programar y ejecutar Haskell directamente desde VSCode:
    - Ejecutar y probar código directamente desde la terminal integrada de VSCode.
    - Ver errores y sugerencias en tiempo real.
 
-![Extensión de Haskell instalada en VSCode](imagenes/vscode-extension.png)
+![Extensión de Haskell instalada en VSCode](imagenes/extension_vscode.png)
 
 ---
 
-## Imágenes de apoyo
-
-Las capturas de pantalla del proceso de instalación y ejecución se encuentran en la carpeta [`/imagenes`](./imagenes) de este repositorio:
-
-| Imagen | Descripción |
-|---|---|
-| `imagenes/powershell-comando.png` | Comando ejecutándose en PowerShell |
-| `imagenes/instalacion-exitosa.png` | Verificación con `ghci --version` |
-| `imagenes/vscode-extension.png` | Extensión de Haskell instalada en VSCode |
-| `imagenes/ejemplo-ghci.png` | Ejemplo de código corriendo en GHCi |
-
-*(Actualiza esta tabla según los nombres reales de tus archivos.)*
 
 ---
 
