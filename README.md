@@ -13,7 +13,8 @@ Exposición sobre el lenguaje **Haskell**, curso de Paradigmas de Programación.
 
 - Guía de instalación de Haskell (Windows)
 - Guía de instalación de la extensión de Haskell para VSCode
-- Ejemplos de código usados en la exposición
+- Ejemplos de código usados en la exposición (ver [Estructura del repositorio](#estructura-del-repositorio))
+- Un juego de Tetris para la terminal
 
 ---
 
@@ -67,6 +68,108 @@ Para programar y ejecutar Haskell directamente desde VSCode:
 
 ---
 
+## Estructura del repositorio
+
+| Carpeta | Contenido |
+|---|---|
+| `Sintaxis/` | Ejemplos de la sintaxis básica de Haskell |
+| `codigos_ejemplo/` | Programas de ejemplo: hola mundo, factorial, fibonacci, figuras y números aleatorios |
+| `calculadora/` | Calculadora hecha en Haskell |
+| `codigo_compilador/` | Ejemplo de compilación de un programa con GHC |
+| `juego/` | Tetris para la terminal |
+| `imagenes/` | Capturas usadas en este README |
+
+---
+
+## Compilador, intérprete y runghc
+
+Haskell se puede ejecutar de tres formas. Todas vienen incluidas con GHC.
+
+### Compilador: `ghc`
+
+Traduce todo el programa a código de máquina y genera un ejecutable (`.exe` en Windows). Es más lento al empezar, porque primero compila, pero el programa corre rápido y se puede distribuir sin necesitar Haskell instalado.
+
+```powershell
+ghc -o programa archivo.hs    # compila y genera programa.exe
+.\programa                    # ejecuta el programa
+```
+
+- `-o nombre` define el nombre del ejecutable.
+- Sin `-o`, el ejecutable se llama como el archivo (`archivo.exe`).
+- Genera también archivos intermedios (`.o` y `.hi`).
+- `ghc -fno-code archivo.hs` solo revisa errores, sin generar nada.
+
+### Intérprete: `ghci`
+
+Es un entorno interactivo (REPL). Carga el código y lo evalúa sin generar un ejecutable. Sirve para probar funciones rápido y ver sus tipos.
+
+```powershell
+ghci archivo.hs
+```
+
+Dentro de GHCi:
+
+| Comando | Qué hace |
+|---|---|
+| `:load archivo.hs` (o `:l`) | Carga un archivo |
+| `:reload` (o `:r`) | Recarga el archivo después de editarlo |
+| `:type expresión` (o `:t`) | Muestra el tipo de una expresión |
+| `:info nombre` (o `:i`) | Muestra información de una función o tipo |
+| `main` | Ejecuta la función `main` |
+| `:quit` (o `:q`) | Sale de GHCi |
+
+Ejemplo:
+
+```
+ghci> :t map
+map :: (a -> b) -> [a] -> [b]
+ghci> factorial 5
+120
+```
+
+### `runghc`: ejecutar sin compilar
+
+`runghc` ejecuta un archivo directamente, sin abrir GHCi y sin dejar un `.exe`. Usa el intérprete por debajo, así que se comporta como un script.
+
+```powershell
+runghc archivo.hs
+```
+
+Se puede escribir también como `runhaskell archivo.hs`.
+
+### ¿Cuál usar?
+
+| Herramienta | Comando | Genera `.exe` | Mejor para |
+|---|---|---|---|
+| Compilador | `ghc -o programa archivo.hs` | Sí | Programas finales y rápidos |
+| Intérprete | `ghci archivo.hs` | No | Probar y explorar el código |
+| runghc | `runghc archivo.hs` | No | Ejecutar un script una sola vez |
+
+> Para programas con teclado o gráficos en la terminal, como el Tetris, usa el compilador. El intérprete y `runghc` ejecutan el programa más lento.
+
+---
+
+## Juego: Tetris
+
+El juego está en `juego/tetris.hs` y usa solo la librería base de Haskell.
+
+```powershell
+cd juego
+ghc -o tetris tetris.hs
+.\tetris            # las piezas caen solas
+.\tetris turnos     # modo por turnos: cae una fila por tecla
+```
+
+| Tecla | Acción |
+|---|---|
+| `a` / flecha izquierda | Mover a la izquierda |
+| `d` / flecha derecha | Mover a la derecha |
+| `w` / flecha arriba | Girar |
+| `s` / flecha abajo | Bajar |
+| Espacio | Caída rápida |
+| `q` | Salir |
+
+> Ejecútalo desde PowerShell, la terminal de VSCode o Windows Terminal. Las teclas se leen con `_kbhit`/`_getch`, por lo que solo funciona en Windows.
 
 ---
 
